@@ -1,5 +1,8 @@
 import "./style.css";
-import { DOMSelectors } from "./dom.js";
+const DOMSelectors = {
+  form: document.querySelector(".form"),
+  input: document.querySelector(".input"),
+};
 
 const word = "hello";
 const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
