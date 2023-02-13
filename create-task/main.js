@@ -1,11 +1,12 @@
 import "./style.css";
 const DOMSelectors = {
   form: document.querySelector(".form"),
-  input: document.querySelector(".input"),
+  input: document.getElementById(".input"),
+  box: document.querySelector(".box"),
 };
 
 const word = "hello";
-const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+const url = `https://api.dictionaryapi.dev/api/v2/entries/en/<word>`;
 async function getData(url) {
   try {
     const response = await fetch(url);
@@ -26,5 +27,19 @@ getData(url);
 DOMSelectors.form.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log(e);
-  let input = DOMSelectors.input.value;
+  const input = DOMSelectors.input.value;
 });
+
+function listAll() {
+  data.forEach((data) => {
+    DOMSelectors.box.insertAdjacentHTML(
+      "beforeend",
+      `<div class="definitions">
+    <h4>Result here</h4>
+    <p>${data.word}, ${data.meanings}</p>
+  </div>
+  `
+    );
+  });
+}
+listAll();
