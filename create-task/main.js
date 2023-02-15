@@ -4,14 +4,14 @@ const DOMSelectors = {
   input: document.getElementById(".input"),
   box: document.querySelector(".box"),
 };
+// let input = DOMSelectors.input.value;
+const url = "https://api.quotable.io";
 
-const word = "hello";
-const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
 async function getData(url) {
   try {
     const response = await fetch(url);
     if (response.status < 200 || response.status > 299) {
-      throw new error(response);
+      throw new Error(response);
     } else {
       const data = await response.json();
       console.log(data);
@@ -24,42 +24,31 @@ async function getData(url) {
 }
 getData(url);
 
-DOMSelectors.form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  console.log(e);
-  let input = DOMSelectors.input.value;
-});
+// DOMSelectors.form.addEventListener("submit", function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   let input = DOMSelectors.input.value;
+//   console.log(input);
+// });
 
-async function word(url, input) {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    data.data
-      .filter((element) => element.word.includes(`${input}`))
-      .map((element) => {
-        DOMSelectors.box.insertAdjacentHTML(
-          "beforeend",
-          `<div class="card">
-          <h1>${element.word}</h1>
-        </div>
-          `
-        );
-      });
-  } catch (error) {
-    console.log(error);
-    console.log("bad");
-  }
-}
-function listAll() {
-  data.forEach((data) => {
-    DOMSelectors.box.insertAdjacentHTML(
-      "beforeend",
-      `<div class="definitions">
-    <h4>Result here</h4>
-    <p>${data.word}, ${data.meanings}</p>
-  </div>
-  `
-    );
-  });
-}
-listAll();
+// async function word(url, input) {
+//   try {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     data.data
+//       .filter((element) => element.word.includes(input))
+//       .map((element) => {
+//         DOMSelectors.box.insertAdjacentHTML(
+//           "beforeend",
+//           `<div class="card">
+//           <h1>${element.definition}</h1>
+//         </div>
+//           `
+//         );
+//       });
+//   } catch (error) {
+//     console.log(error);
+//     console.log("bad");
+//   }
+// }
+// word();
