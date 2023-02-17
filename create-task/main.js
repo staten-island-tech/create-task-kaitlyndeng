@@ -8,7 +8,7 @@ const DOMSelectors = {
 DOMSelectors.form.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log(e);
-  let input = DOMSelectors.input.value;
+  let input = DOMSelectors.input;
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input}`;
 
   async function getData(url) {
@@ -32,15 +32,16 @@ DOMSelectors.form.addEventListener("submit", function (e) {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      data.data
-        .filter((element) => element.word.includes(input))
-        .map((element) => {
+      data
+        .filter((data) => data.element.word.includes(input))
+        .forEach((data) => {
           DOMSelectors.box.insertAdjacentHTML(
             "beforeend",
             `<div class="definitions">
-          <h1>${element.meanings}</h1>
-        </div>
-          `
+            <h1>${data.element.word}</h1>
+            <h2>${data.element.meanings.definitions}</h2>
+          </div>
+            `
           );
         });
     } catch (error) {
@@ -53,7 +54,13 @@ DOMSelectors.form.addEventListener("submit", function (e) {
 
 // function listAll() {
 //   data.forEach((data) => {
-//     DOMSelectors.box.insertAdjacentHTML("beforeend", ``);
+//     DOMSelectors.box.insertAdjacentHTML(
+//       "beforeend",
+//       `<div class="definitions">
+//        <h1>${data.element.meanings}</h1>
+//       </div>
+//       `
+//     );
 //   });
 // }
 // listAll();
