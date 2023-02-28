@@ -1,16 +1,16 @@
 import "./style.css";
 const DOMSelectors = {
   form: document.querySelector(".form"),
-  input1: document.getElementById(".input1"),
+  input: document.getElementById("input"),
   box: document.querySelector(".box"),
-  btn: document.querySelector(".btn"),
+  btn: document.getElementById("btn"),
+  label: document.getElementById("label"),
 };
 
-DOMSelectors.form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  console.log(e);
-  let input = DOMSelectors.form.value;
+DOMSelectors.form.addEventListener("submit", function () {
+  let input = DOMSelectors.label.value;
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input}`;
+  console.log(input);
 
   async function getData(url, input) {
     try {
@@ -29,18 +29,18 @@ DOMSelectors.form.addEventListener("submit", function (e) {
   }
   getData(url, input);
 
-  DOMSelectors.btn.addEventListener("click", function (e) {
-    data
-      .filter((data) => data.element.word.includes(input))
-      .forEach((data) => {
-        DOMSelectors.box.innerHTML(
-          "beforeend",
-          `<div class="definitions">
-      <h1>${data.element.word}</h1>
-      <h2>${data.element.meanings.definitions}</h2>
-    </div>
-      `
-        );
-      });
-  });
+  DOMSelectors.box.innerHTML(
+    "beforeend",
+    `<div class="definitions">
+  <h1>${data.element.word}</h1>
+  <h2>${data.element.meanings.definitions}</h2>
+  </div>
+   `
+  );
 });
+//
+//
+//         );
+//       });
+//   });
+// });
