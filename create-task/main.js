@@ -1,12 +1,16 @@
 import "./style.css";
 const DOMSelectors = {
   form: document.querySelector(".form"),
-  input: document.getElementById("input"),
+  input: box.getElementById(".input"),
   box: document.querySelector(".box"),
   btn: document.getElementById("btn"),
   label: document.getElementById("label"),
 };
 
+DOMSelectors.input.addEventListener ("Enter", function (e) {
+ 
+  console.log(e.target.value)
+})
 DOMSelectors.form.addEventListener("submit", function () {
   let input = DOMSelectors.label.value;
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input}`;
@@ -29,14 +33,14 @@ DOMSelectors.form.addEventListener("submit", function () {
   }
   getData(url, input);
 
-  DOMSelectors.box.innerHTML(
-    "beforeend",
-    `<div class="definitions">
-  <h1>${data.element.word}</h1>
-  <h2>${data.element.meanings.definitions}</h2>
-  </div>
-   `
-  );
+  // DOMSelectors.box.innerHTML(
+  //   "beforeend",
+  //   `<div class="definitions">
+  // <h1>${data.element.word}</h1>
+  // <h2>${data.element.meanings.definitions}</h2>
+  // </div>
+  //  `
+  // );
 });
 //
 //
