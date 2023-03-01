@@ -7,24 +7,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     <title>New Word Maker</title>
+
   </head>
   <body>
  <div class="header">
-      <div class="line">.</div>
       <h1 class="main-header">LingoMingle</h1>
       <h2 class="desc">Submit two words and we'll combine them to give you a new word.</h2>
-    </div>
-   
-<div class="box">
-  <div class="word-card">
-      <h3>What's your first word?</h3>
-      <form class="form">
-        <label for="label" class="word">Word 1:</label>
-        <input type="text" placeholder="Type a word here..." id="label" value="" required>
-        <input type="submit" value="Enter" id="btn">
-      </form>
- </div>
 </div>
+ 
+<h3>What's your first word?</h3>
+<div class="box">  
+        <input type="text" placeholder="Type a word here..." id="input"  required>
+        <button id="btn">Enter</button>
+ </div>
+
+ <h3>What's your second word?</h3>
+<div class="container">  
+        <input type="text" placeholder="Type a word here..." id="word"  required>
+        <button id="button">Enter</button>
+ </div>
+
+<!-- </div>
  <div class="word-card">
       <h3>What's your second word?</h3>
       <form class="form">
@@ -32,11 +35,13 @@
         <input type="text" placeholder="Type a word here..." id="input" value="" required>
         <input type="submit" value="Enter" id="btn">
       </form>
-  </div>
+  </div> -->
     <br>
-  <div class="definitions">
+  <div class="definition1">
   </div>
-     <!-- <button>Combine Words</button> -->
+  <div class="definition2">
+  </div>
+<button class="combine">Combine Words</button>
 <script type="module" src="/main.js"></script>
 </body>
 </html>
