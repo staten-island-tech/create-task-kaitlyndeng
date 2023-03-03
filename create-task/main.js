@@ -1,19 +1,24 @@
 import "./style.css";
 const DOMSelectors = {
   input: document.getElementById("input"),
-  box: document.querySelector(".box"),
   btn: document.getElementById("btn"),
   definition1: document.querySelector(".definition1"),
   button: document.getElementById("button"),
-  container: document.querySelector(".container"),
   word: document.getElementById("word"),
   definition2: document.querySelector(".definition2"),
+  result: document.querySelector(".result"),
+  combinebtn: document.querySelector(".combinebtn")
 };
+
+// const history = []
+// DOMSelectors.history.insertAdjacentHTML=
+// history.forEach(element => console.log(element));
+// history.push(input);
+// history.push(word)
 
 DOMSelectors.btn.addEventListener("click", function () {
 
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input.value}`;
-  console.log(input);
 
   async function getData(url, input) {
     try {
@@ -36,17 +41,19 @@ DOMSelectors.btn.addEventListener("click", function () {
       console.log("bad");
     }
   }
+
   getData(url, input);
 })
 
 DOMSelectors.button.addEventListener("click", function () {
+  
+  const url = "https://random-word-api.herokuapp.com/word";
 
-  const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word.value}`;
-  console.log(word);
-
-  async function getData(url, word) {
+  const generated = [];
+  for ( let i=0;i<5; i++){
+  async function getData(url) {
     try {
-      const response = await fetch(url, word);
+      const response = await fetch(url);
       if (response.status < 200 || response.status > 299) {
         throw new Error(response);
       } else {
@@ -56,17 +63,24 @@ DOMSelectors.button.addEventListener("click", function () {
 
         DOMSelectors.definition2.innerHTML=`
         <div class="definition2">
-        <h1>${data[0].word}</h1>
-        <p>${data[0].meanings[0].definitions[0].definition}</p>
-        </div>`;
+        <h1>${data}</h1>
+        </div>`
+
       }
     } catch (error) {
       console.log(error);
       console.log("bad");
     }
+    
   }
-  getData(url, word);
+  getData(url);
+}
 })
 
+// DOMSelectors.combinebtn.addEventListener("click", function (){
+//   DOMSelectors.result.innerHTML = input ;
+// })
+
+  
 
 
