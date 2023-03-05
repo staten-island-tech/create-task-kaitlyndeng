@@ -4,19 +4,17 @@ const DOMSelectors = {
   btn: document.getElementById("btn"),
   definition1: document.querySelector(".definition1"),
   button: document.getElementById("button"),
-  word: document.getElementById("word"),
   definition2: document.querySelector(".definition2"),
   result: document.querySelector(".result"),
   combine: document.querySelector(".combine"),
-  history: document.querySelector(".history")
+  history: document.querySelector(".history"),
+  reset: document.querySelector(".reset")
 };
-
 const generated = [];
-
 DOMSelectors.btn.addEventListener("click", function () {
 
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input.value}`;
-  
+  // generated.push(input.value)
 
   async function getData(url, input) {
     try {
@@ -34,7 +32,11 @@ DOMSelectors.btn.addEventListener("click", function () {
         <p>${data[0].meanings[0].definitions[0].definition}</p>
         </div>`;
 
-        generated.push(input.value)
+        
+          generated.push(input.value);  
+        
+     
+        
       }
     } catch (error) {
       console.log(error);
@@ -51,7 +53,7 @@ DOMSelectors.btn.addEventListener("click", function () {
 DOMSelectors.button.addEventListener("click", function () {
 
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input2.value}`;
-  
+  // generated.push(input2.value)
 
   async function getData(url, input2) {
     try {
@@ -69,7 +71,14 @@ DOMSelectors.button.addEventListener("click", function () {
         <p>${data[0].meanings[0].definitions[0].definition}</p>
         </div>`;
 
-        generated.push(input2.value)
+      
+          generated.push(input2.value);  
+
+          function history(){
+            DOMSelectors.history.innerHTML = `<div class="history">${generated}</div>`
+          }
+          history()
+        
       }
     } catch (error) {
       console.log(error);
@@ -84,33 +93,6 @@ DOMSelectors.button.addEventListener("click", function () {
 
 })
 
-console.log(generated)
-
-
-
-//   for ( let i=0;i<5; i++){
-//   async function getData(url) {
-//     try {
-//       const response = await fetch(url);
-//       if (response.status < 200 || response.status > 299) {
-//         throw new Error(response);
-//       } else {
-//         const data = await response.json();
-//         console.log(data);
-//         console.log("good");
-      
-//         DOMSelectors.definition2.innerHTML +=
-//         `<div class="definition2">
-//         <h1>${data}</h1>
-//         </div>`
-        
-
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-    
-//   }
 
 DOMSelectors.combine.addEventListener("click", function () {
   if (input.value.length < 4 && input2.value.length < 4){
@@ -141,9 +123,15 @@ DOMSelectors.combine.addEventListener("click", function () {
 
 // })
 
-  DOMSelectors.history.innerHTML = generated.
-  forEach(word => console.log(word))
-  
+DOMSelectors.reset.addEventListener("click", function(){
+  input.value="";
+  input2.value="";
+  DOMSelectors.definition1.innerHTML=""
+  DOMSelectors.definition2.innerHTML="";
+  DOMSelectors.result.innerHTML=""
+})
+
+
 
 
 
