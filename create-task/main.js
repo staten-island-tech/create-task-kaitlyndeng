@@ -7,14 +7,9 @@ const DOMSelectors = {
   word: document.getElementById("word"),
   definition2: document.querySelector(".definition2"),
   result: document.querySelector(".result"),
-  combinebtn: document.querySelector(".combinebtn")
+  combine: document.querySelector(".combine")
 };
 
-// const history = []
-// DOMSelectors.history.insertAdjacentHTML=
-// history.forEach(element => console.log(element));
-// history.push(input);
-// history.push(word)
 
 DOMSelectors.btn.addEventListener("click", function () {
 
@@ -39,6 +34,9 @@ DOMSelectors.btn.addEventListener("click", function () {
     } catch (error) {
       console.log(error);
       console.log("bad");
+      DOMSelectors.definition1.insertAdjacentHTML("afterbegin", 
+      `<h2 class="err">Word not found. Please check your spelling.</h2>`
+      )
     }
   }
 
@@ -49,7 +47,6 @@ DOMSelectors.button.addEventListener("click", function () {
   
   const url = "https://random-word-api.herokuapp.com/word";
 
-  const generated = [];
   for ( let i=0;i<5; i++){
   async function getData(url) {
     try {
@@ -60,22 +57,39 @@ DOMSelectors.button.addEventListener("click", function () {
         const data = await response.json();
         console.log(data);
         console.log("good");
-
-        DOMSelectors.definition2.innerHTML=`
-        <div class="definition2">
+      
+        DOMSelectors.definition2.innerHTML +=
+        `<div class="definition2">
         <h1>${data}</h1>
         </div>`
+        
 
       }
     } catch (error) {
       console.log(error);
-      console.log("bad");
     }
     
   }
-  getData(url);
+getData(url);
+
 }
+// const result = getData(url);
+DOMSelectors.combine.addEventListener("click", function () {
+  if (input.value.length >= 1>=1){
+    const str1 = input.value;
+    const firstThree = str1.substring(0,3);
+   DOMSelectors.result.insertAdjacentHTML("beforeend",`<div class="results">${firstThree}</div>`)
+    const str2 = valueOf`${data}`;
+
+   
+
+  
+  }
 })
+
+})
+
+
 
 // DOMSelectors.combinebtn.addEventListener("click", function (){
 //   DOMSelectors.result.innerHTML = input ;
