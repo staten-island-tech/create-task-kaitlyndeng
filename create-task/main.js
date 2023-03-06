@@ -1,6 +1,5 @@
 import "./style.css";
 const DOMSelectors = {
-  input: document.getElementById("input"),
   btn: document.getElementById("btn"),
   definition1: document.querySelector(".definition1"),
   button: document.getElementById("button"),
@@ -10,12 +9,12 @@ const DOMSelectors = {
   history: document.querySelector(".history"),
   reset: document.querySelector(".reset")
 };
+
 const generated = [];
+
+
 DOMSelectors.btn.addEventListener("click", function () {
-
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input.value}`;
-  // generated.push(input.value)
-
   async function getData(url, input) {
     try {
       const response = await fetch(url, input);
@@ -32,10 +31,24 @@ DOMSelectors.btn.addEventListener("click", function () {
         <p>${data[0].meanings[0].definitions[0].definition}</p>
         </div>`;
 
-        
           generated.push(input.value);  
-        
-     
+
+          function preventRepeat(generated) {
+            let clean = [];
+            generated.forEach(element => {
+            if (!clean.includes(element)) {
+               clean.push(element);
+            }
+          });
+          return clean;
+          }
+          
+          console.log(preventRepeat(generated));
+          
+        function history(){
+          DOMSelectors.history.innerHTML = `<div class="history">${preventRepeat(generated)}</div>`
+        }
+      history()
         
       }
     } catch (error) {
@@ -45,16 +58,11 @@ DOMSelectors.btn.addEventListener("click", function () {
       `<h2 class="err">Word not found. Please check your spelling.</h2>`
       )}
     }
-
   getData(url, input);
-  
 })
 
 DOMSelectors.button.addEventListener("click", function () {
-
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${input2.value}`;
-  // generated.push(input2.value)
-
   async function getData(url, input2) {
     try {
       const response = await fetch(url, input2);
@@ -71,14 +79,26 @@ DOMSelectors.button.addEventListener("click", function () {
         <p>${data[0].meanings[0].definitions[0].definition}</p>
         </div>`;
 
-      
           generated.push(input2.value);  
-
-          function history(){
-            DOMSelectors.history.innerHTML = `<div class="history">${generated}</div>`
+          console.log(generated)
+         
+          function preventRepeat(generated) {
+            let clean = [];
+            generated.forEach(element => {
+            if (!clean.includes(element)) {
+              clean.push(element);
+            }
+          });
+          return clean;
           }
-          history()
+          
+          console.log(preventRepeat(generated));
         
+        function history(){
+            DOMSelectors.history.innerHTML = `<div class="history">${preventRepeat(generated)}</div>`
+          }
+        history()
+
       }
     } catch (error) {
       console.log(error);
@@ -87,12 +107,8 @@ DOMSelectors.button.addEventListener("click", function () {
       `<h2 class="err">Word not found. Please check your spelling.</h2>`
       )}
     }
-
   getData(url, input2);
-
-
 })
-
 
 DOMSelectors.combine.addEventListener("click", function () {
   if (input.value.length < 4 && input2.value.length < 4){
@@ -121,8 +137,6 @@ DOMSelectors.combine.addEventListener("click", function () {
     DOMSelectors.result.insertAdjacentHTML("beforeend",`<div class="results">${firstThree}${lastTwo}</div>`)
   }})
 
-// })
-
 DOMSelectors.reset.addEventListener("click", function(){
   input.value="";
   input2.value="";
@@ -130,11 +144,3 @@ DOMSelectors.reset.addEventListener("click", function(){
   DOMSelectors.definition2.innerHTML="";
   DOMSelectors.result.innerHTML=""
 })
-
-
-
-
-
-  
-
-

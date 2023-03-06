@@ -3,10 +3,7 @@ background-color: #FFEFD3;
 text-align: center;
 padding:20px;
 }
-.line{
-  background-color: #A4243B;
-  
-}
+
 body{
   background-color: #294C60;
   font-family: 'Kanit', sans-serif;
@@ -15,9 +12,27 @@ body{
   justify-content: space-around;
   
 }
-.word-card{
+
+.word1, .word2{
   background-color: #ADB6C4;
 }
-.definition1 , .definition2{
+
+.definition1, .definition2{
   background-color: #ADB6C4;
+}
+.combine{
+  padding: 10px;
+  margin: 30px;
+  align-items: center;
+
+}
+.result{
+  background-color: #ADB6C4;
+}
+.reset{
+  background-color: #ADB6C4;
+}
+.history{
+  background-color: #be838e;
+  
 }
