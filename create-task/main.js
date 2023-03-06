@@ -46,7 +46,7 @@ DOMSelectors.btn.addEventListener("click", function () {
           console.log(preventRepeat(generated));
           
         function history(){
-          DOMSelectors.history.innerHTML = `<div class="history">${preventRepeat(generated)}</div>`
+          DOMSelectors.history.innerHTML = `<div class="history"><h2> Words Used</h2>${preventRepeat(generated)}</div>`
         }
       history()
         
@@ -95,7 +95,7 @@ DOMSelectors.button.addEventListener("click", function () {
           console.log(preventRepeat(generated));
         
         function history(){
-            DOMSelectors.history.innerHTML = `<div class="history">${preventRepeat(generated)}</div>`
+            DOMSelectors.history.innerHTML = `<div class="history"><h2> Words Used</h2>${preventRepeat(generated)}</div>`
           }
         history()
 
@@ -103,7 +103,7 @@ DOMSelectors.button.addEventListener("click", function () {
     } catch (error) {
       console.log(error);
       console.log("bad");
-      DOMSelectors.definition1.insertAdjacentHTML("afterbegin", 
+      DOMSelectors.definition2.insertAdjacentHTML("afterbegin", 
       `<h2 class="err">Word not found. Please check your spelling.</h2>`
       )}
     }
@@ -116,31 +116,31 @@ DOMSelectors.combine.addEventListener("click", function () {
     const firstTwo = str1.substring(0,2);
     const str2 = input2.value;
     const lastTwo = str2.substring(str2.length - 2);
-   DOMSelectors.result.insertAdjacentHTML("beforeend",`<div class="results">${firstTwo}${lastTwo}</div>`)
+   DOMSelectors.result.innerHTML = `<div class="results"><h2>Your Word Baby</h2>${firstTwo}${lastTwo}</div>`
   }else if (input.value.length > 3 && input2.value.length > 3){
     const str1 = input.value;
     const firstThree = str1.substring(0,3);
     const str2 = input2.value;
     const lastThree = str2.substring(str2.length - 3);
-    DOMSelectors.result.insertAdjacentHTML("beforeend",`<div class="results">${firstThree}${lastThree}</div>`)
+    DOMSelectors.result.innerHTML=`<div class="results"><h2>Your Word Baby</h2>${firstThree}${lastThree}</div>`
   }else if (input.value.length < 4 && input2.value.length > 3){
     const str1 = input.value;
     const firstTwo = str1.substring(0,2);
     const str2 = input2.value;
     const lastThree = str2.substring(str2.length - 3);
-    DOMSelectors.result.insertAdjacentHTML("beforeend",`<div class="results">${firstTwo}${lastThree}</div>`)
+    DOMSelectors.result.innerHTML=`<div class="results"><h2>Your Word Baby</h2>${firstTwo}${lastThree}</div>`
   }else if (input.value.length > 3 && input2.value.length < 4){
     const str1 = input.value;
     const firstThree = str1.substring(0,3);
     const str2 = input2.value;
     const lastTwo = str2.substring(str2.length - 2);
-    DOMSelectors.result.insertAdjacentHTML("beforeend",`<div class="results">${firstThree}${lastTwo}</div>`)
+    DOMSelectors.result.insertAdjacentHTML=`<div class="results"><h2>Your Word Baby</h2>${firstThree}${lastTwo}</div>`
   }})
 
 DOMSelectors.reset.addEventListener("click", function(){
   input.value="";
   input2.value="";
-  DOMSelectors.definition1.innerHTML=""
+  DOMSelectors.definition1.innerHTML="";
   DOMSelectors.definition2.innerHTML="";
   DOMSelectors.result.innerHTML=""
 })
