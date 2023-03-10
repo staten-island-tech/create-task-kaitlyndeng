@@ -71,17 +71,13 @@ DOMSelectors.button.addEventListener("click", function () {
       } else {
         const data = await response.json();
         console.log(data);
-        console.log("good");
-
         DOMSelectors.definition2.innerHTML=`
         <div class="definition2">
         <h1>${data[0].word}</h1>
         <p>${data[0].meanings[0].definitions[0].definition}</p>
         </div>`;
-
           generated.push(input2.value);  
           console.log(generated)
-         
           function preventRepeat(generated) {
             let clean = [];
             generated.forEach(element => {
@@ -91,9 +87,7 @@ DOMSelectors.button.addEventListener("click", function () {
           });
           return clean;
           }
-          
           console.log(preventRepeat(generated));
-        
         function history(){
             DOMSelectors.history.innerHTML = `<div class="history"><h2> Words Used</h2>${preventRepeat(generated)}</div>`
           }
@@ -102,7 +96,6 @@ DOMSelectors.button.addEventListener("click", function () {
       }
     } catch (error) {
       console.log(error);
-      console.log("bad");
       DOMSelectors.definition2.insertAdjacentHTML("afterbegin", 
       `<h2 class="err">Word not found. Please check your spelling.</h2>`
       )}
